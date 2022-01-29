@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/manasch/TRINIT_Whitespace_DEV02#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.2",
     "mongoose": "^6.1.8",
     "path": "^0.12.7"

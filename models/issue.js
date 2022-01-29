@@ -1,5 +1,16 @@
 const mongoose = require('mongoose');
 
+const Comment = {
+    username: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    }
+}
+
 const IssueSchema = new mongoose.Schema({
     id: {
         type: Number,
@@ -26,6 +37,10 @@ const IssueSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    roles: [{
+        type: String,
+        required: true
+    }],
     type: {
         type: String,
         required: true
@@ -34,8 +49,8 @@ const IssueSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    discussion: [{
-        type: String,
+    discussion: [{ 
+        type: Comment,
         required: false
     }]
 });
