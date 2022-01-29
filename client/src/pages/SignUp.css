@@ -11,6 +11,7 @@ body {
     width: 100vw;
     background-color: blue;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -49,6 +50,7 @@ body {
     outline: none;
     padding: 10px;
     color: white;
+    border-radius: 10px;
 }
 
 .signup-button {
