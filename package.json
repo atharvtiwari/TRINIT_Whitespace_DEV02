@@ -1,19 +1,30 @@
 {
-  "name": "trinit",
+  "name": "trinit_whitespace_dev02",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Bug/Issue Tracker",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/manasch/TRINIT_Whitespace_DEV02.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/manasch/TRINIT_Whitespace_DEV02/issues"
   },
-  "homepage": "https://github.com/manasch/TRINIT_Whitespace_DEV02#readme"
+  "homepage": "https://github.com/manasch/TRINIT_Whitespace_DEV02#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }

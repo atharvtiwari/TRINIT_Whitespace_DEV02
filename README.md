@@ -1,1 +1,1 @@
-# Bug Issue Tracker
+# Bug/Issue Tracker built for Tri-NIT Hackathon
