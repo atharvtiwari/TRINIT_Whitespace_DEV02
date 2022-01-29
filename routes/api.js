@@ -3,8 +3,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 const User = require('../models/user');
-const Issue = require('../models/issue');
-const Team = require('../models/team')
+// const Issue = require('../models/issue');
+// const Team = require('../models/team')
 
 router.get('/home', (req, res) => {
     User.findOne({ current: true })
@@ -72,3 +72,42 @@ router.post("/signup", (req, res) => {
         console.log(err)
     })
 })
+
+router.post('/login', (req, res) => {
+    var { username, password } = req.body
+    if (!username || !password) {
+        return res.status(422).json({ error: "please fill all fields" })
+    }
+    User.findOne({ username: username })
+    .then((savedUser) => {
+        console.log(savedUser);
+        if (savedUser == null) {
+            console.log("test");
+            return res.status(422).json({ error: "invalid email or password" })
+        }
+        bcrypt.compare(password, savedUser.password)
+        .then(match => {
+            if (match) {
+                User.findOneAndUpdate({ _id: savedUser._id }, { current: 'true' }, null, function(err) {
+                    if (err) {
+                        console.log(err)
+                    }
+                })
+                res.json({
+                    message: "logged in successfully"
+                })
+            }
+            else {
+                return res.status(422).json({ error: "invalid email or password" })
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+module.exports = router

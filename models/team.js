@@ -15,5 +15,5 @@ const TeamSchema = new mongoose.Schema({
     }]
 });
 
-const Team = mongoose.model("Issue", Team);
+const Team = mongoose.model("Team", TeamSchema);
 module.exports = Team;
