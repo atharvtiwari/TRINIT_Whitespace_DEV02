@@ -3,8 +3,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 const User = require('../models/user');
-// const Issue = require('../models/issue');
-// const Team = require('../models/team')
+const Issue = require('../models/issue');
+const Team = require('../models/team')
 
 router.get('/home', (req, res) => {
     User.findOne({ current: true })
@@ -109,5 +109,18 @@ router.post('/login', (req, res) => {
         console.log(err)
     })
 })
+
+router.post('/logout', (req, res) => {
+    var { username } = req.body;
+    User.findOneAndUpdate({ username: username }, {current: false }, null, function(err) {
+        if (err) {
+            res.status(500).json({ msg: 'Sorry, internal server error'});
+            return;
+        }
+        return res.json({
+            msh: 'user successfully logged out'
+        });
+    });
+});
 
 module.exports = router

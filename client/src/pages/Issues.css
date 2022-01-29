@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+}
+
+.fullscreen {
+    height: 100vh;
+    width: 100vw;
+}
+
+.upper-div {
+    overflow-x: auto;
+    background-color: blanchedalmond;
+    height: 35vh;
+    width: 100vw;
+}
+
+.lower-div {
+    background-color: blue;
+    height: 65vh;
+    width: 100vw;
+}

@@ -63,7 +63,7 @@ class Login extends React.Component {
                         <label>Password</label>
                         <input type='password' name='password' placeholder='Enter Password' value={this.state.password} onChange={this.handleChange}/>
                     </div>
-                    <button type='submit' className='signup-button'>Login</button>
+                    <button type='submit' className='signup-button signup'>Login</button>
                 </form>
             </div>
         )

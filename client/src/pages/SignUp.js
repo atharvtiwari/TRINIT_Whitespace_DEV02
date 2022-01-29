@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 
 import './SignUp.css'
 
@@ -78,7 +78,9 @@ class SignUp extends React.Component {
 						<label>Password</label>
 						<input type='password' name='password' placeholder='Enter Password' value={this.state.password} onChange={this.handleChange} />
 					</div>
-					<button type='submit' className='signup-button'>Sign Up</button>
+					<input value='Sign Up' type='submit' className='signup-button signup' />
+					<h4 className='or'>or</h4>
+					<Link to='/login' className='signin-redirect signup'>Sign In</Link>
 				</form>
 			</div>
 		)
