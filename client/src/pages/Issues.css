@@ -12,13 +12,17 @@ html, body {
 }
 
 .upper-div {
-    overflow-x: auto;
     background-color: blanchedalmond;
     height: 35vh;
     width: 100vw;
 }
 
 .lower-div {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
     background-color: blue;
     height: 65vh;
     width: 100vw;

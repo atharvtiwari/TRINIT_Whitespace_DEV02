@@ -123,4 +123,19 @@ router.post('/logout', (req, res) => {
     });
 });
 
+
+router.get('/who', (req, res) => {
+    User.findOne({ current: true })
+    .then((loggedInUser) => {
+        if(!loggedInUser)
+        {
+            return res.status(400).json({ error: 'YOU MUST LOG IN'});
+        }
+        res.json(loggedInUser)
+    })
+    .catch((error) => {
+        console.log('error: ', error);
+    });
+});
+
 module.exports = router

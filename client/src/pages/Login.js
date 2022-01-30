@@ -32,7 +32,7 @@ class Login extends React.Component {
             .then(() => {
                 console.log('Data has been sent to the server');
                 this.resetUserInputs();
-                this.setState({ redirect: "/home" });
+                this.setState({ redirect: "/issues" });
             })
             .catch((err) => {
                 console.log('Internal server error', err);

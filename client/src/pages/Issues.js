@@ -5,6 +5,8 @@ import { Navigate } from "react-router-dom";
 import './Issues.css'
 import './SignUp.css'
 
+var data
+
 class Issues extends React.Component {
     state = {
         username: '',
@@ -12,6 +14,36 @@ class Issues extends React.Component {
         redirect: null,
         issues: []
     }
+
+    componentDidMount() {
+        this.whoLoggedIn()
+    }
+
+    whoLoggedIn = () => {
+        axios.get('/bugtracker/who')
+        .then((response) => {
+            data = response.data;
+            this.setState({ username: data.username });
+            console.log(`${this.state.username} is logged in`)
+        })
+        .catch(() => {
+            this.setState({ redirect: '/'});
+        });
+    }
+
+    // router.get('/home', (req, res) => {
+    //     User.findOne({ current: true })
+    //     .then((loggedInUser) => {
+    //         if(!loggedInUser)
+    //         {
+    //             return res.status(401).json({ error: "YOU MUST LOG IN" })
+    //         }
+    //         res.json(loggedInUser)
+    //     })
+    //     .catch((error) => {
+    //         console.log('error: ', error);
+    //     });
+    // });
 
     logOut = (event) => {
         event.preventDefault();
@@ -48,10 +80,132 @@ class Issues extends React.Component {
         }
         return (
             <div className="fullscreen">
-                <button className="logout signup" onClick={this.logOut}>Logout</button>
+                {/* <button className="logout signup" onClick={this.logOut}>Logout</button> */}
                 <div className="upper-div">TEAM DETAILS HERE</div>
                 <div className="lower-div">
+                    <div>
                     ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
+                    <div>
+                    ALL THE ISSUES GO HERE
+                    </div>
                 </div>
             </div>
         )
