@@ -1,0 +1,38 @@
+Introduction
+
+implementing an issue tracking system using mern stack with provisions for
+handling issues, i.e. creation, deletion, discussion, updating priority, etc.,\
+handling member permissions, basic sign up, log out features, etc.
+
+--------------------
+
+Proposed Method
+
+Started by implementing a signup and login system in mern. Used bcryptjs to hash the passwords.
+
+On login it displays the issues page.
+
+The issue page has the list of all currently accessible issues with links to them \
+as well as options to delete an issue and add new issues.\
+logout button implemented in navbar
+
+the new issue pages takes all required parameters like subject description, priority, status, team responsible, etc
+
+on clicking an issue, takes you to a dynamically generated page containing details about the issue as well as\
+ability to view discussion, add comment and delete comments
+
+-----------------------
+
+Work Done
+
+Completed login and signup
+Issues homepage with links to issue and create new issue completely implemented.
+provisional delete issue button provided
+New issue page created without styling or backend connection
+issue page loads details as well as discussion and allows basic commenting and deletion with database support
+
+---------------------
+
+Conclusion
+
+fairly complete implementation of a bug tracking system in mern stack
