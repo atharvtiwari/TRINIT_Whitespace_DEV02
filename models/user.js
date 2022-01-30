@@ -21,7 +21,11 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
-    }
+    },
+    issues_in: [{
+        type: String,
+        required: false,
+    }]
 });
 
 const User = mongoose.model("User", UserSchema);

@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0
+}
+
+.issue-full {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(9, 9, 100);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.issue-container {
+    background-color: thistle;
+    padding: 50px 40px;
+    width: 50%;
+    max-width: 80%;
+    overflow-y: auto;
+}
+
+.issue-group {
+    color: black;
+    font-weight: lighter;
+    font-size: 1.5em;
+    margin: 5px;
+}
+
+.discussion {
+    color: black;
+    font-weight: lighter;
+    /* font-size: 1.5em; */
+    margin-top: 10px;
+}
+
+.disc-display {
+    margin: 5px;
+    border: 2px solid rgb(24, 24, 172);
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.disc-content {
+    margin: 2px;
+    background-color: rgba(47, 47, 143, 0.7);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.disc-button {
+    background-color: rgba(196, 61, 61, 0.5);
+    outline: none;
+    border: 1px solid blue;
+    cursor: pointer;
+    padding: 10px 10px;
+    color: white;
+    font-weight: lighter;
+    border-radius: 10px;
+}
+
+.disc-button:hover {
+    background-color: rgb(129, 57, 57);
+    cursor: pointer;
+}

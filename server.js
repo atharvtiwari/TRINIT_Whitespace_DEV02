@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const routes = require('./routes/api');
+const morgan = require('morgan')
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -20,6 +21,7 @@ mongoose.connection.on('connected', () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(morgan('tiny'));
 app.use('/bugtracker', routes);
 
 app.listen(PORT, console.log(`Server running at http://localhost:${PORT}`));

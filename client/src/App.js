@@ -5,6 +5,8 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Issues from './pages/Issues';
+import IssuePage from './pages/IssuePage'
+import NewIssue from './pages/NewIssue';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path='/login' element={<Login />}/>
           <Route path='/home' element={<Home />}/>
           <Route path='/issues' element={<Issues />}/>
+          <Route path='/issues/:issueID' element={<IssuePage />}/>
+          <Route path='/newissue' element={<NewIssue />}/>
         </Routes>
       </Router>
     </div>

@@ -1,9 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 import './Issues.css'
-import './SignUp.css'
 
 var data
 
@@ -23,7 +22,7 @@ class Issues extends React.Component {
         axios.get('/bugtracker/who')
         .then((response) => {
             data = response.data;
-            this.setState({ username: data.username });
+            this.setState({ username: data.username, issues: data.issues_in });
             console.log(`${this.state.username} is logged in`)
         })
         .catch(() => {
@@ -31,19 +30,27 @@ class Issues extends React.Component {
         });
     }
 
-    // router.get('/home', (req, res) => {
-    //     User.findOne({ current: true })
-    //     .then((loggedInUser) => {
-    //         if(!loggedInUser)
-    //         {
-    //             return res.status(401).json({ error: "YOU MUST LOG IN" })
-    //         }
-    //         res.json(loggedInUser)
+    // getIssues = (event) => {
+    //     event.preventDefault();
+    //     const payload = {
+    //         issues: this.state.issues 
+    //     }
+
+    //     axios({
+    //         url: '/bugtracker/issues',
+    //         method: 'GET',
+    //         data: payload
     //     })
-    //     .catch((error) => {
-    //         console.log('error: ', error);
-    //     });
-    // });
+    //     .then((res) => {
+    //         console.log('Data has been sent to the server');
+    //         var data = res.data;
+    //         this.setState({issue_content: data})
+    //     })
+    //     .catch(() => {
+    //         console.log('Internal server error');
+    //     })
+
+    // }
 
     logOut = (event) => {
         event.preventDefault();
@@ -72,6 +79,17 @@ class Issues extends React.Component {
         });
     };
 
+    displayIssues = (issues) => {
+        if (!issues.length) return null;
+        console.log(issues)
+        return issues.map((issue, index) => (
+            <div key={index} className="issue-display">
+                <Link to={`${index + 1}`} className="issue-content">{issue}</Link>
+                <button className='delete-issue' id={index} onClick={this.deleteIssue}>Delete Issue</button>
+            </div>
+        ))
+    }
+
 
     render() {
 
@@ -80,132 +98,10 @@ class Issues extends React.Component {
         }
         return (
             <div className="fullscreen">
-                {/* <button className="logout signup" onClick={this.logOut}>Logout</button> */}
-                <div className="upper-div">TEAM DETAILS HERE</div>
-                <div className="lower-div">
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
-                    <div>
-                    ALL THE ISSUES GO HERE
-                    </div>
+                <button className="logout" onClick={this.logOut}>Logout</button>
+                <div className="issues-container">
+                    <Link to='/newissue' className="new-issue">New Issue</Link>
+                    {this.displayIssues(this.state.issues)}                    
                 </div>
             </div>
         )
