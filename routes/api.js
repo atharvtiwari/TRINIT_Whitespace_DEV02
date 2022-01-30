@@ -114,7 +114,7 @@ router.post('/logout', (req, res) => {
     var { username } = req.body;
     User.findOneAndUpdate({ username: username }, {current: false }, null, function(err) {
         if (err) {
-            res.status(500).json({ msg: 'Sorry, internal server error'});
+            res.status(500).json({ msg: 'Sorry, internal server error' });
             return;
         }
         return res.json({
@@ -123,13 +123,12 @@ router.post('/logout', (req, res) => {
     });
 });
 
-
 router.get('/who', (req, res) => {
     User.findOne({ current: true })
     .then((loggedInUser) => {
         if(!loggedInUser)
         {
-            return res.status(400).json({ error: 'YOU MUST LOG IN'});
+            return res.status(400).json({ error: 'Please login first' });
         }
         res.json(loggedInUser)
     })
@@ -137,5 +136,112 @@ router.get('/who', (req, res) => {
         console.log('error: ', error);
     });
 });
+
+router.get('/issues', (req, res) => {
+    var { issues } = req.body;
+    var issues_arr = [];
+    for (issue in issues)
+    {
+        Issue.findOne({ issue_id: issue})
+        .then((UserIssue) => {
+            if (!UserIssue)
+            {
+                return res.status(400).json({ error: 'Issue not found' });
+            }
+            issues_arr.append(UserIssue);
+        })
+    }
+    var issues_json = JSON.stringify(issues_arr);
+    res.json(issues_json)
+    .catch((error) => {
+        console.log('error: ', error);
+    });
+})
+
+router.get('/create', (req, res) => {
+    var users_arr = [];
+    User.find({ })
+    .then((AllUsers) => {
+        if (!AllUsers)
+        {
+            return res.status(400).json({ error: 'No users found' });
+        }
+        for (OneUser in AllUsers)
+        {
+            users_arr.append(OneUser.username);
+        }
+    })
+    var users_json = JSON.stringify(users_arr);
+    res.json(users_json)
+    .catch((error) => {
+        console.log('error: ', error);
+    });
+})
+
+router.post('/create', (req, res) => {
+    var {
+        username,
+        id,
+        subject,
+        description,
+        priority,
+        type,
+        members
+    } = req.body;
+
+    if (!subject || !description || !type || !priority) {
+        return res.status(422).json({
+            error: "please fill all fields",
+        });
+    }
+
+    Issue.find( { id: id } )
+    .then((savedIssue) => {
+        if (savedIssue) {
+            return res.status(422).json({
+                error: "Issue with this id already in database"
+            })
+        }
+        const issue = new Issue({
+            id,
+            subject,
+            description,
+            status: true,
+            priority,
+            type,
+            opened_by: username
+        })
+        issue.save()
+
+        for (member in members)
+        {
+            User.findOne({ username: username })
+            .then((currUser) => {
+                if (!currUser)
+                {
+                    return res.status(400).json({ error: 'User not found' });
+                }
+                var issues_in = currUser.issues_in;
+                issues_in.append(id);
+                User.findOneAndUpdate({ username: username }, { issues_in: issues_in }, null, (err) =>
+                {
+                    if (err) {
+                        res.status(500).json({ msg: 'Sorry, internal server errors' });
+                        return;
+                    }
+                    return res.json({
+                        msg: 'Your data has been saved!!!!!!'
+                    });
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
 
 module.exports = router

@@ -33,19 +33,11 @@ const IssueSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    team: {
-        type: String,
-        required: false
-    },
-    roles: [{
-        type: String,
-        required: true
-    }],
     type: {
         type: String,
         required: true
     },
-    username: {
+    opened_by: {
         type: String,
         required: true
     },
